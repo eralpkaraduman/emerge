@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import <ALView+PureLayout.h>
+#import "PushNotificationManager.h"
 
 @interface ViewController ()
 
@@ -17,11 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    UIButton *registerPushButton = [[UIButton alloc] initForAutoLayout];
+    [self.view addSubview:registerPushButton];
+    [registerPushButton autoCenterInSuperview];
+    
+    [registerPushButton setTitle:@"Register For Push" forState:UIControlStateNormal];
+    [registerPushButton addTarget:self action:@selector(onTappedRegisterPushButton) forControlEvents:UIControlEventTouchUpInside];
+    [registerPushButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [registerPushButton setBackgroundColor:[UIColor lightGrayColor]];
+
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)onTappedRegisterPushButton {
+    [[PushNotificationManager sharedManager] registerForNotifications];
 }
 
 @end

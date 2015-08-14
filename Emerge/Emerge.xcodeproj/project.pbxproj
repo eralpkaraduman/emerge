@@ -13,6 +13,7 @@
 		E30268B71B7DE75E000E8568 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268B61B7DE75E000E8568 /* ViewController.m */; };
 		E30268BC1B7DE75E000E8568 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30268BB1B7DE75E000E8568 /* Images.xcassets */; };
 		E30268BF1B7DE75E000E8568 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E30268BD1B7DE75E000E8568 /* LaunchScreen.xib */; };
+		E30268D61B7E0F9D000E8568 /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268D51B7E0F9D000E8568 /* PushNotificationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		E30268BE1B7DE75E000E8568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E30268C91B7DE75E000E8568 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E30268CA1B7DE75E000E8568 /* EmergeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmergeTests.m; sourceTree = "<group>"; };
+		E30268D41B7E0F9D000E8568 /* PushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationManager.h; sourceTree = "<group>"; };
+		E30268D51B7E0F9D000E8568 /* PushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationManager.m; sourceTree = "<group>"; };
 		F67FD471AE015BAB1A8CC7BF /* Pods-Emerge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Emerge/Pods-Emerge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +95,8 @@
 				E30268BB1B7DE75E000E8568 /* Images.xcassets */,
 				E30268BD1B7DE75E000E8568 /* LaunchScreen.xib */,
 				E30268AE1B7DE75E000E8568 /* Supporting Files */,
+				E30268D41B7E0F9D000E8568 /* PushNotificationManager.h */,
+				E30268D51B7E0F9D000E8568 /* PushNotificationManager.m */,
 			);
 			path = Emerge;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			files = (
 				E30268B71B7DE75E000E8568 /* ViewController.m in Sources */,
 				E30268B41B7DE75E000E8568 /* AppDelegate.m in Sources */,
+				E30268D61B7E0F9D000E8568 /* PushNotificationManager.m in Sources */,
 				E30268B11B7DE75E000E8568 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
