@@ -69,7 +69,7 @@ static NSString *const kHostURLString = @"http://52.5.104.99/msg";
     message.user = [CurrentUser currentUser].profile;
 
     NSDictionary *dict = [MTLJSONAdapter JSONDictionaryFromModel:message error:nil];
-    NSDictionary *finalDict = @{@"message" : dict};
+    NSDictionary *finalDict = @{ @"message" : dict };
     NSData *data = [NSJSONSerialization dataWithJSONObject:finalDict options:0 error:nil];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -108,14 +108,17 @@ static NSString *const kHostURLString = @"http://52.5.104.99/msg";
             @"lng" : @(location.coordinate.longitude).stringValue
         } forKey:@"_coordinates"];
     }
-    
+
     if ([CurrentUser currentUser].devicePushToken) {
         [setupDict setObject:[CurrentUser currentUser].devicePushToken forKey:@"token"];
     }
-    
+    else {
+        [setupDict setObject:@"" forKey:@"token"];
+    }
+
     NSData *data = [NSJSONSerialization dataWithJSONObject:setupDict options:0 error:nil];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
+
     [self.socket send:string];
 }
 
