@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Mantle/Mantle.h>
 
-@interface User : NSObject
+@interface User : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic) NSString *username;
 @property (nonatomic) UIImage *avatar;

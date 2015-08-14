@@ -7,9 +7,19 @@
 //
 
 #import "Message.h"
-#include "User.h"
+#import "User.h"
+#import <Mantle/MTLJSONAdapter.h>
+
+@interface Message () 
+
+@end
 
 @implementation Message
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{ @"user" : @"user", @"text" : @"text" };
+}
 
 - (instancetype)initWithUser:(User *)user text:(NSString *)text
 {
@@ -24,4 +34,16 @@
 
     return self;
 }
+
++ (NSValueTransformer *)userJSONTransformer
+{
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSDictionary *dict,
+                                                                 BOOL *success,
+                                                                 NSError *__autoreleasing *error) {
+        return [MTLJSONAdapter modelOfClass:[User class] fromJSONDictionary:dict error:error];
+    } reverseBlock:^id(User *user, BOOL *success, NSError *__autoreleasing *error) {
+        return [MTLJSONAdapter JSONDictionaryFromModel:user error:error];
+    }];
+}
+
 @end

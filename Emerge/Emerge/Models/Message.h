@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Mantle/Mantle.h>
 
 @class User;
 
-@interface Message : NSObject
+@interface Message : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic) User *user;
 @property (nonatomic, strong) NSString *text;
