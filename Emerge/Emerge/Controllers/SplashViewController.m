@@ -7,7 +7,17 @@
 //
 
 #import "SplashViewController.h"
+#import "LocationPermissionViewController.h"
 
 @implementation SplashViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = YES;
+    LocationPermissionViewController *controller = [LocationPermissionViewController new];
+    [self.navigationController pushViewController:controller animated:NO];
+}
 
 @end

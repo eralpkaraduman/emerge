@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SplashViewController.h"
 
 
 @interface AppDelegate ()
@@ -23,7 +24,7 @@
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 
-    UIViewController *viewController = [[UIViewController alloc] init];
+    SplashViewController *viewController = [[SplashViewController alloc] init];
     UINavigationController *controller = [[UINavigationController alloc]  //
         initWithRootViewController:viewController];
     [_window setRootViewController:controller];

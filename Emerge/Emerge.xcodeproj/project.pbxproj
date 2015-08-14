@@ -17,6 +17,7 @@
 		57730A821B7E0B48008DBF1D /* TypingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A7B1B7E0B48008DBF1D /* TypingIndicatorView.m */; };
 		57730A851B7E0BA7008DBF1D /* LocationPermissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A841B7E0BA7008DBF1D /* LocationPermissionViewController.m */; };
 		57730A881B7E0BB6008DBF1D /* UsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A871B7E0BB6008DBF1D /* UsernameViewController.m */; };
+		57730A8B1B7E1218008DBF1D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A8A1B7E1218008DBF1D /* User.m */; };
 		E30268B11B7DE75E000E8568 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268B01B7DE75E000E8568 /* main.m */; };
 		E30268B41B7DE75E000E8568 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268B31B7DE75E000E8568 /* AppDelegate.m */; };
 		E30268BC1B7DE75E000E8568 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30268BB1B7DE75E000E8568 /* Images.xcassets */; };
@@ -42,6 +43,8 @@
 		57730A841B7E0BA7008DBF1D /* LocationPermissionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPermissionViewController.m; sourceTree = "<group>"; };
 		57730A861B7E0BB6008DBF1D /* UsernameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsernameViewController.h; sourceTree = "<group>"; };
 		57730A871B7E0BB6008DBF1D /* UsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsernameViewController.m; sourceTree = "<group>"; };
+		57730A891B7E1218008DBF1D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		57730A8A1B7E1218008DBF1D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		81AE4D5A480989AE20DCE5FE /* Pods-Emerge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Emerge/Pods-Emerge.release.xcconfig"; sourceTree = "<group>"; };
 		8742B994E071A3FF79AA40AD /* libPods-Emerge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Emerge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F2B238FBDFD0BCD29726E6 /* libPods-emerge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-emerge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +103,8 @@
 			children = (
 				57730A731B7E0B48008DBF1D /* Message.h */,
 				57730A741B7E0B48008DBF1D /* Message.m */,
+				57730A891B7E1218008DBF1D /* User.h */,
+				57730A8A1B7E1218008DBF1D /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				E30268B41B7DE75E000E8568 /* AppDelegate.m in Sources */,
 				57730A7C1B7E0B48008DBF1D /* BaseViewController.m in Sources */,
 				57730A881B7E0BB6008DBF1D /* UsernameViewController.m in Sources */,
+				57730A8B1B7E1218008DBF1D /* User.m in Sources */,
 				57730A7D1B7E0B48008DBF1D /* MessageViewController.m in Sources */,
 				57730A851B7E0BA7008DBF1D /* LocationPermissionViewController.m in Sources */,
 				E30268B11B7DE75E000E8568 /* main.m in Sources */,
