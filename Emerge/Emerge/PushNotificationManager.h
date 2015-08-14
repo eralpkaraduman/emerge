@@ -19,11 +19,12 @@
 
 + (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings;
 
-+ (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler;
++ (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo;
 
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 
 + (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;
 
++ (void)didReceiveRemoteNotification:(NSDictionary *)userInfo;
 
 @end

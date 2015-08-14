@@ -52,7 +52,13 @@
     [_application registerUserNotificationSettings:settings];
 }
 
-+ (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler {
++ (void)didReceiveRemoteNotification:(NSDictionary *)userInfo {
+ 
+    NSLog(@"p2 id %@",userInfo);
+    
+}
+
++ (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo{
     
     NSLog(@"p id %@",identifier);
     
@@ -60,6 +66,12 @@
 
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
+    NSString* strToken = [[[[deviceToken description]
+                                stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                               stringByReplacingOccurrencesOfString: @">" withString: @""]
+                              stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+    NSLog(@"%@",strToken);
     NSLog(@"p reg %@",deviceToken);
 }
 

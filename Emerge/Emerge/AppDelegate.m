@@ -57,7 +57,9 @@
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
     
-    [PushNotificationManager handleActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:completionHandler];
+    [PushNotificationManager handleActionWithIdentifier:identifier forRemoteNotification:userInfo];
+    
+    completionHandler();
     
 }
 
@@ -74,6 +76,12 @@
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     
     [PushNotificationManager didRegisterUserNotificationSettings:notificationSettings];
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    [PushNotificationManager didReceiveRemoteNotification:userInfo];
     
 }
 
