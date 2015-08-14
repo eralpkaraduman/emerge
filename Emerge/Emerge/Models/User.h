@@ -7,16 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import <CoreLocation/CLLocation.h>
+#import <UIKit/UIKit.h>
 
 @interface User : NSObject
 
 @property (nonatomic) NSString *username;
-@property (nonatomic) NSData *avatarImageData;
-@property (nonatomic) CLLocation *location;
-
-
-+ (instancetype)currentUser;
+@property (nonatomic) UIImage *avatar;
 
 @end

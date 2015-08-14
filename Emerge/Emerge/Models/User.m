@@ -14,16 +14,5 @@
 
 @implementation User
 
-+ (instancetype)currentUser
-{
-    static User *_currentUser = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        _currentUser = [User new];
-    });
-    
-    return _currentUser;
-}
 
 @end

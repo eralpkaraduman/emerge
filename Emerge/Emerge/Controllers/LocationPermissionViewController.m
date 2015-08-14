@@ -30,16 +30,20 @@
     [label autoAlignAxisToSuperviewAxis:ALAxisVertical];
 
 
-    [[HIPLocationManager sharedManager] getLocationWithExecutionBlock:^(CLLocation *location,  //
-                                                                        NSError *error) {
+//    [[HIPLocationManager sharedManager] getLocationWithExecutionBlock:^(CLLocation *location,  //
+//                                                                        NSError *error) {
+//
+//        User *user = [User currentUser];
+//        user.location = location;
+//
+//        UsernameViewController *controller = [UsernameViewController new];
+//        [self.navigationController pushViewController:controller animated:YES];
+//
+//    }];
+    
+    UsernameViewController *controller = [UsernameViewController new];
+    [self.navigationController pushViewController:controller animated:YES];
 
-        User *user = [User currentUser];
-        user.location = location;
-
-        UsernameViewController *controller = [UsernameViewController new];
-        [self.navigationController pushViewController:controller animated:YES];
-
-    }];
 }
 
 @end

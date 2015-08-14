@@ -9,5 +9,6 @@ pod 'PureLayout'
 pod 'LoremIpsum'
 pod 'HIPLocationManager', :git => 'https://github.com/Hipo/HIPLocationManager.git'
 pod 'ReactiveCocoa'
+pod 'Mantle'
 
 end

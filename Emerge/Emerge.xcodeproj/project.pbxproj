@@ -18,6 +18,8 @@
 		57730A851B7E0BA7008DBF1D /* LocationPermissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A841B7E0BA7008DBF1D /* LocationPermissionViewController.m */; };
 		57730A881B7E0BB6008DBF1D /* UsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A871B7E0BB6008DBF1D /* UsernameViewController.m */; };
 		57730A8B1B7E1218008DBF1D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A8A1B7E1218008DBF1D /* User.m */; };
+		57730A911B7E1B93008DBF1D /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A8F1B7E1B93008DBF1D /* CurrentUser.m */; };
+		57730A951B7E1E0D008DBF1D /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 57730A941B7E1E0D008DBF1D /* WebSocketManager.m */; };
 		E30268B11B7DE75E000E8568 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268B01B7DE75E000E8568 /* main.m */; };
 		E30268B41B7DE75E000E8568 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268B31B7DE75E000E8568 /* AppDelegate.m */; };
 		E30268BC1B7DE75E000E8568 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30268BB1B7DE75E000E8568 /* Images.xcassets */; };
@@ -45,6 +47,10 @@
 		57730A871B7E0BB6008DBF1D /* UsernameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsernameViewController.m; sourceTree = "<group>"; };
 		57730A891B7E1218008DBF1D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		57730A8A1B7E1218008DBF1D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		57730A8F1B7E1B93008DBF1D /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		57730A901B7E1B93008DBF1D /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		57730A931B7E1E0D008DBF1D /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
+		57730A941B7E1E0D008DBF1D /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
 		81AE4D5A480989AE20DCE5FE /* Pods-Emerge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerge.release.xcconfig"; path = "Pods/Target Support Files/Pods-Emerge/Pods-Emerge.release.xcconfig"; sourceTree = "<group>"; };
 		8742B994E071A3FF79AA40AD /* libPods-Emerge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Emerge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89F2B238FBDFD0BCD29726E6 /* libPods-emerge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-emerge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +107,8 @@
 		57730A721B7E0B48008DBF1D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				57730A8F1B7E1B93008DBF1D /* CurrentUser.m */,
+				57730A901B7E1B93008DBF1D /* CurrentUser.h */,
 				57730A731B7E0B48008DBF1D /* Message.h */,
 				57730A741B7E0B48008DBF1D /* Message.m */,
 				57730A891B7E1218008DBF1D /* User.h */,
@@ -120,6 +128,15 @@
 				57730A7B1B7E0B48008DBF1D /* TypingIndicatorView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		57730A921B7E1DFE008DBF1D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				57730A931B7E1E0D008DBF1D /* WebSocketManager.h */,
+				57730A941B7E1E0D008DBF1D /* WebSocketManager.m */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		C2B4DBFA702CBAF6F250D93D /* Frameworks */ = {
@@ -153,6 +170,7 @@
 		E30268AD1B7DE75E000E8568 /* Emerge */ = {
 			isa = PBXGroup;
 			children = (
+				57730A921B7E1DFE008DBF1D /* Managers */,
 				57730A6B1B7E0B48008DBF1D /* Controllers */,
 				57730A721B7E0B48008DBF1D /* Models */,
 				57730A751B7E0B48008DBF1D /* Views */,
@@ -228,7 +246,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E30268A61B7DE75E000E8568 /* Build configuration list for PBXProject "Emerge" */;
+			buildConfigurationList = E30268A61B7DE75E000E8568 /* Build configuration list for PBXProject "emerge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -303,9 +321,11 @@
 				57730A801B7E0B48008DBF1D /* MessageTableViewCell.m in Sources */,
 				E30268B41B7DE75E000E8568 /* AppDelegate.m in Sources */,
 				57730A7C1B7E0B48008DBF1D /* BaseViewController.m in Sources */,
+				57730A951B7E1E0D008DBF1D /* WebSocketManager.m in Sources */,
 				57730A881B7E0BB6008DBF1D /* UsernameViewController.m in Sources */,
 				57730A8B1B7E1218008DBF1D /* User.m in Sources */,
 				57730A7D1B7E0B48008DBF1D /* MessageViewController.m in Sources */,
+				57730A911B7E1B93008DBF1D /* CurrentUser.m in Sources */,
 				57730A851B7E0BA7008DBF1D /* LocationPermissionViewController.m in Sources */,
 				E30268B11B7DE75E000E8568 /* main.m in Sources */,
 			);
@@ -440,7 +460,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E30268A61B7DE75E000E8568 /* Build configuration list for PBXProject "Emerge" */ = {
+		E30268A61B7DE75E000E8568 /* Build configuration list for PBXProject "emerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E30268CC1B7DE75E000E8568 /* Debug */,

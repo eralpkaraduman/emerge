@@ -7,7 +7,21 @@
 //
 
 #import "Message.h"
+#include "User.h"
 
 @implementation Message
 
+- (instancetype)initWithUser:(User *)user text:(NSString *)text
+{
+    self = [super init];
+
+    if (!self) {
+        return nil;
+    }
+
+    _user = user;
+    _text = text;
+
+    return self;
+}
 @end

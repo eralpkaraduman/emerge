@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class User;
+
 @interface Message : NSObject
 
-@property (nonatomic, strong) NSString *username;
+@property (nonatomic) User *user;
 @property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) UIImage *attachment;
+
+- (instancetype)initWithUser:(User *)user text:(NSString *)text;
 
 @end
