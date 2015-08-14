@@ -1,6 +1,9 @@
 PODS:
   - HIPLocationManager (1.0.0)
   - LoremIpsum (1.0.0)
+  - Mantle (2.0.4):
+    - Mantle/extobjc (= 2.0.4)
+  - Mantle/extobjc (2.0.4)
   - PureLayout (2.0.6)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
@@ -15,6 +18,7 @@ PODS:
 DEPENDENCIES:
   - HIPLocationManager (from `https://github.com/Hipo/HIPLocationManager.git`)
   - LoremIpsum
+  - Mantle
   - PureLayout
   - ReactiveCocoa
   - SlackTextViewController
@@ -32,6 +36,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   HIPLocationManager: ffef7e1810a1bf9762a43593e61612960a306b3f
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
+  Mantle: 6bee68168423948be0c0c5924832bf3af188e099
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SlackTextViewController: 84e1e4b7f12a8e3691cf97ca61c934b99058a2e8
