@@ -1,0 +1,1 @@
+../../../HIPLocationManager/HIPLocationManager/HIPLocationManager.h

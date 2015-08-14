@@ -1,16 +1,28 @@
 PODS:
+  - HIPLocationManager (1.0.0)
   - LoremIpsum (1.0.0)
   - PureLayout (2.0.6)
   - SlackTextViewController (1.6)
   - SocketRocket (0.4)
 
 DEPENDENCIES:
+  - HIPLocationManager (from `https://github.com/Hipo/HIPLocationManager.git`)
   - LoremIpsum
   - PureLayout
   - SlackTextViewController
   - SocketRocket
 
+EXTERNAL SOURCES:
+  HIPLocationManager:
+    :git: https://github.com/Hipo/HIPLocationManager.git
+
+CHECKOUT OPTIONS:
+  HIPLocationManager:
+    :commit: 8ed49e3c3f0091235dabea1a3b0da52917f96730
+    :git: https://github.com/Hipo/HIPLocationManager.git
+
 SPEC CHECKSUMS:
+  HIPLocationManager: ffef7e1810a1bf9762a43593e61612960a306b3f
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SlackTextViewController: 84e1e4b7f12a8e3691cf97ca61c934b99058a2e8

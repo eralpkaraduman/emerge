@@ -7,5 +7,6 @@ pod 'SlackTextViewController'
 pod 'SocketRocket'
 pod 'PureLayout'
 pod 'LoremIpsum'
+pod 'HIPLocationManager', :git => 'https://github.com/Hipo/HIPLocationManager.git'
 
 end
