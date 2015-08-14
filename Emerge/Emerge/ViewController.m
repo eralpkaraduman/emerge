@@ -28,7 +28,16 @@
     [registerPushButton addTarget:self action:@selector(onTappedRegisterPushButton) forControlEvents:UIControlEventTouchUpInside];
     [registerPushButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [registerPushButton setBackgroundColor:[UIColor lightGrayColor]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPushNotificationReceived:) name:PushNotificationManagerDidReceiveNotification object:nil];
+}
 
+- (void)onPushNotificationReceived:(NSNotification *)notification {
+    
+    NSDictionary *pushNotificationData = notification.userInfo;
+    NSLog(@"push n : %@",pushNotificationData);
+    
+    [[[UIAlertView alloc] initWithTitle:nil message:@"received push" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     
 }
 

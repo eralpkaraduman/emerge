@@ -56,11 +56,17 @@
  
     NSLog(@"p2 id %@",userInfo);
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:PushNotificationManagerDidReceiveNotification object:userInfo];
+    
 }
 
 + (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo{
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:PushNotificationManagerDidReceiveNotification object:userInfo];
+    
     NSLog(@"p id %@",identifier);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PushNotificationManagerDidReceiveNotification object:userInfo];
     
 }
 
@@ -72,7 +78,7 @@
                               stringByReplacingOccurrencesOfString: @" " withString: @""];
     
     NSLog(@"%@",strToken);
-    NSLog(@"p reg %@",deviceToken);
+
 }
 
 + (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

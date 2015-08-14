@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString * const PushNotificationManagerDidReceiveNotification = @"PushNotificationManagerDidReceiveNotification";
+
 @interface PushNotificationManager : NSObject
 
 + (instancetype)sharedManager;
