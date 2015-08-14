@@ -1,0 +1,1 @@
+PODS_EMERGE_MANTLE_OTHER_LDFLAGS = -framework "Foundation"

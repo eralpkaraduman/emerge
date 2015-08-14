@@ -253,6 +253,11 @@
 					E30268AA1B7DE75E000E8568 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = W9875NV3WF;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

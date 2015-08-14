@@ -35,6 +35,17 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if ([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]) {
+        
+        LocationPermissionViewController *locationPermissionVC = [LocationPermissionViewController new];
+        [self.navigationController pushViewController:locationPermissionVC animated:YES];
+        
+    }
+}
+
 - (void)onReceivedDeviceToken:(NSNotification*)notification {
     
     NSString *deviceToken = [notification.object valueForKey:@"deviceToken"];
