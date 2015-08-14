@@ -12,6 +12,8 @@
 #import "User.h"
 #import "CurrentUser.h"
 
+#import <Mantle/Mantle.h>
+
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface UsernameViewController ()
@@ -39,7 +41,17 @@
     [self.alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         @strongify(self);
 
+        NSString *text = @"";
+        
+        NSDictionary *userDict = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+        if(userDict){
+            User *user = [MTLJSONAdapter modelOfClass:[User class] fromJSONDictionary:userDict error:nil];
+            text = user.username;
+        }
+        
         textField.placeholder = @"Username";
+        textField.text = text;
+        
         [textField addTarget:self
                       action:@selector(didChangeInput:)
             forControlEvents:UIControlEventEditingChanged];
@@ -60,6 +72,10 @@
 
                     MessageViewController *controller = [MessageViewController new];
                     [self.navigationController pushViewController:controller animated:YES];
+                    
+                    NSDictionary *dict = [MTLJSONAdapter JSONDictionaryFromModel:user error:nil];
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"user"];
                 }];
 
     self.okAction.enabled = NO;
