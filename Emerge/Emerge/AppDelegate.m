@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SplashViewController.h"
-
+#import "PushNotificationManager.h"
 
 @interface AppDelegate ()
 
@@ -23,13 +23,15 @@
 
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-
     SplashViewController *viewController = [[SplashViewController alloc] init];
     UINavigationController *controller = [[UINavigationController alloc]  //
         initWithRootViewController:viewController];
     [_window setRootViewController:controller];
     [_window makeKeyAndVisible];
-
+    
+    
+    [PushNotificationManager application:application didFinishLaunchingWithOptions:launchOptions];
+    
     // Override point for customization after application launch.
     return YES;
 }
@@ -68,6 +70,38 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also
     // applicationDidEnterBackground:.
+}
+
+#pragma mark - push
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    
+    [PushNotificationManager handleActionWithIdentifier:identifier forRemoteNotification:userInfo];
+    
+    completionHandler();
+    
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    [PushNotificationManager didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    
+    [PushNotificationManager didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    
+    [PushNotificationManager didRegisterUserNotificationSettings:notificationSettings];
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    [PushNotificationManager didReceiveRemoteNotification:userInfo];
+    
 }
 
 @end

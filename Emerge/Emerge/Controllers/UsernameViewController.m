@@ -10,6 +10,7 @@
 #import "MessageViewController.h"
 
 #import "User.h"
+#import "CurrentUser.h"
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -51,8 +52,11 @@
                     @strongify(self);
 
                     UITextField *usernameField = [self.alertController.textFields firstObject];
-                    User *user = [User currentUser];
+                    User *user = [User new];
                     user.username = usernameField.text;
+                    
+                    CurrentUser *currentUser = [CurrentUser currentUser];
+                    currentUser.profile = user;
 
                     MessageViewController *controller = [MessageViewController new];
                     [self.navigationController pushViewController:controller animated:YES];
