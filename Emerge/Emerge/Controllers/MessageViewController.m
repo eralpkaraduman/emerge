@@ -11,20 +11,23 @@
 #import "MessageTextView.h"
 #import "TypingIndicatorView.h"
 #import "Message.h"
+#import "CurrentUser.h"
 
 #import <LoremIpsum/LoremIpsum.h>
+
+#import "WebSocketManager.h"
 
 #define DEBUG_CUSTOM_TYPING_INDICATOR 0
 
 static NSString *MessengerCellIdentifier = @"MessengerCell";
 static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 
-@interface MessageViewController ()
+@interface MessageViewController () <WebSocketManagerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *messages;
 
-@property (nonatomic, strong) NSArray *users;
-@property (nonatomic, strong) NSArray *channels;
+//@property (nonatomic, strong) NSArray *users;
+//@property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) NSArray *emojis;
 
 @property (nonatomic, strong) NSArray *searchResult;
@@ -74,30 +77,31 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     [super viewDidLoad];
     
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [WebSocketManager sharedManager].delegate = self;
+//    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    
+//    for (int i = 0; i < 100; i++) {
+//        NSInteger words = (arc4random() % 40)+1;
+//        
+//        Message *message = [Message new];
+//        message.username = [LoremIpsum name];
+//        message.text = [LoremIpsum wordsWithNumber:words];
+//        [array addObject:message];
+//    }
+//    
+//    NSArray *reversed = [[array reverseObjectEnumerator] allObjects];
     
-    for (int i = 0; i < 100; i++) {
-        NSInteger words = (arc4random() % 40)+1;
-        
-        Message *message = [Message new];
-        message.username = [LoremIpsum name];
-        message.text = [LoremIpsum wordsWithNumber:words];
-        [array addObject:message];
-    }
+    self.messages = [NSMutableArray array];
     
-    NSArray *reversed = [[array reverseObjectEnumerator] allObjects];
+//    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
+//    
+//    UIBarButtonItem *typeItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_typing"] style:UIBarButtonItemStylePlain target:self action:@selector(simulateUserTyping:)];
+//    UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
     
-    self.messages = [[NSMutableArray alloc] initWithArray:reversed];
+//    self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
     
-    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
-    
-    UIBarButtonItem *typeItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_typing"] style:UIBarButtonItemStylePlain target:self action:@selector(simulateUserTyping:)];
-    UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
-    
-    self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
-    
-    self.users = @[@"Allen", @"Anna", @"Alicia", @"Arnold", @"Armando", @"Antonio", @"Brad", @"Catalaya", @"Christoph", @"Emerson", @"Eric", @"Everyone", @"Steve"];
-    self.channels = @[@"General", @"Random", @"iOS", @"Bugs", @"Sports", @"Android", @"UI", @"SSB"];
+//    self.users = @[@"Allen", @"Anna", @"Alicia", @"Arnold", @"Armando", @"Antonio", @"Brad", @"Catalaya", @"Christoph", @"Emerson", @"Eric", @"Everyone", @"Steve"];
+//    self.channels = @[@"General", @"Random", @"iOS", @"Bugs", @"Sports", @"Android", @"UI", @"SSB"];
     self.emojis = @[@"m", @"man", @"machine", @"block-a", @"block-b", @"bowtie", @"boar", @"boat", @"book", @"bookmark", @"neckbeard", @"metal", @"fu", @"feelsgood"];
 
     self.bounces = YES;
@@ -134,13 +138,14 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [[WebSocketManager sharedManager] startListening];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 }
-
 
 #pragma mark - Action Methods
 
@@ -254,24 +259,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     // This little trick validates any pending auto-correction or auto-spelling just after hitting the 'Send' button
     [self.textView refreshFirstResponder];
     
-    Message *message = [Message new];
-    message.username = [LoremIpsum name];
-    message.text = [self.textView.text copy];
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    UITableViewRowAnimation rowAnimation = self.inverted ? UITableViewRowAnimationBottom : UITableViewRowAnimationTop;
-    UITableViewScrollPosition scrollPosition = self.inverted ? UITableViewScrollPositionBottom : UITableViewScrollPositionTop;
-
-    [self.tableView beginUpdates];
-    [self.messages insertObject:message atIndex:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:rowAnimation];
-    [self.tableView endUpdates];
-    
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:YES];
-    
-    // Fixes the cell from blinking (because of the transform, when using translucent cells)
-    // See https://github.com/slackhq/SlackTextViewController/issues/94#issuecomment-69929927
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [[WebSocketManager sharedManager] sendMessageWithText:self.textView.text];
     
     [super didPressRightButton:sender];
 }
@@ -374,15 +362,15 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     self.searchResult = nil;
     
     if ([prefix isEqualToString:@"@"]) {
-        if (word.length > 0) {
-            array = [self.users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
-        }
-        else {
-            array = self.users;
-        }
+//        if (word.length > 0) {
+//            array = [self.users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
+//        }
+//        else {
+//            array = self.users;
+//        }
     }
     else if ([prefix isEqualToString:@"#"] && word.length > 0) {
-        array = [self.channels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
+//        array = [self.channels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
     }
     else if (([prefix isEqualToString:@":"] || [prefix isEqualToString:@"+:"]) && word.length > 1) {
         array = [self.emojis filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH[c] %@", word]];
@@ -435,10 +423,10 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     MessageTableViewCell *cell = (MessageTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:MessengerCellIdentifier];
     
-    if (!cell.textLabel.text) {
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(editCellMessage:)];
-        [cell addGestureRecognizer:longPress];
-    }
+//    if (!cell.textLabel.text) {
+//        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(editCellMessage:)];
+//        [cell addGestureRecognizer:longPress];
+//    }
     
     Message *message = self.messages[indexPath.row];
     
@@ -574,6 +562,27 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 - (BOOL)textView:(SLKTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     return [super textView:textView shouldChangeTextInRange:range replacementText:text];
+}
+
+#pragma mark - WebSocketManagerDelegate
+
+- (void)webSocketManager:(WebSocketManager *)manager didReceiveMessage:(Message *)message
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewRowAnimation rowAnimation = self.inverted ? UITableViewRowAnimationBottom : UITableViewRowAnimationTop;
+    UITableViewScrollPosition scrollPosition = self.inverted ? UITableViewScrollPositionBottom : UITableViewScrollPositionTop;
+    
+    [self.tableView beginUpdates];
+    [self.messages insertObject:message atIndex:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:rowAnimation];
+    [self.tableView endUpdates];
+    
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:YES];
+    
+    // Fixes the cell from blinking (because of the transform, when using translucent cells)
+    // See https://github.com/slackhq/SlackTextViewController/issues/94#issuecomment-69929927
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
 }
 
 
