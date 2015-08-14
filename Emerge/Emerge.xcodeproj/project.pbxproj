@@ -25,6 +25,7 @@
 		E30268BC1B7DE75E000E8568 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E30268BB1B7DE75E000E8568 /* Images.xcassets */; };
 		E30268BF1B7DE75E000E8568 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E30268BD1B7DE75E000E8568 /* LaunchScreen.xib */; };
 		E30268D61B7E0F9D000E8568 /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268D51B7E0F9D000E8568 /* PushNotificationManager.m */; };
+		E30268D91B7E3BB0000E8568 /* PushNotificationSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30268D81B7E3BB0000E8568 /* PushNotificationSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		E30268CA1B7DE75E000E8568 /* EmergeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmergeTests.m; sourceTree = "<group>"; };
 		E30268D41B7E0F9D000E8568 /* PushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationManager.h; sourceTree = "<group>"; };
 		E30268D51B7E0F9D000E8568 /* PushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationManager.m; sourceTree = "<group>"; };
+		E30268D71B7E3BB0000E8568 /* PushNotificationSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationSettingsViewController.h; sourceTree = "<group>"; };
+		E30268D81B7E3BB0000E8568 /* PushNotificationSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationSettingsViewController.m; sourceTree = "<group>"; };
 		F67FD471AE015BAB1A8CC7BF /* Pods-Emerge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Emerge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Emerge/Pods-Emerge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +106,8 @@
 				57730A841B7E0BA7008DBF1D /* LocationPermissionViewController.m */,
 				57730A861B7E0BB6008DBF1D /* UsernameViewController.h */,
 				57730A871B7E0BB6008DBF1D /* UsernameViewController.m */,
+				E30268D71B7E3BB0000E8568 /* PushNotificationSettingsViewController.h */,
+				E30268D81B7E3BB0000E8568 /* PushNotificationSettingsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				57730A951B7E1E0D008DBF1D /* WebSocketManager.m in Sources */,
 				57730A881B7E0BB6008DBF1D /* UsernameViewController.m in Sources */,
 				57730A8B1B7E1218008DBF1D /* User.m in Sources */,
+				E30268D91B7E3BB0000E8568 /* PushNotificationSettingsViewController.m in Sources */,
 				57730A7D1B7E0B48008DBF1D /* MessageViewController.m in Sources */,
 				57730A911B7E1B93008DBF1D /* CurrentUser.m in Sources */,
 				57730A851B7E0BA7008DBF1D /* LocationPermissionViewController.m in Sources */,
