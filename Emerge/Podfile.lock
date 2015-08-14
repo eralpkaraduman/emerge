@@ -1,13 +1,16 @@
 PODS:
+  - PureLayout (2.0.6)
   - SlackTextViewController (1.6)
   - SocketRocket (0.4)
 
 DEPENDENCIES:
+  - PureLayout
   - SlackTextViewController
   - SocketRocket
 
 SPEC CHECKSUMS:
+  PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SlackTextViewController: 84e1e4b7f12a8e3691cf97ca61c934b99058a2e8
   SocketRocket: 01443933b7bc362621325f4607b80b4286a99707
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.36.3

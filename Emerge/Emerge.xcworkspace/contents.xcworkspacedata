@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Emerge.xcodeproj">
+      location = "group:/Users/eralpkaraduman/Documents/GitHub/Emerge/Emerge/emerge.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:emerge.xcodeproj">
    </FileRef>
 </Workspace>

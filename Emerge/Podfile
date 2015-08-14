@@ -1,15 +1,10 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '6.0'
 
-target 'Emerge' do
+target 'emerge' do
 
 pod 'SlackTextViewController'
 pod 'SocketRocket'
 pod 'PureLayout'
 
 end
-
-target 'EmergeTests' do
-
-end
-
