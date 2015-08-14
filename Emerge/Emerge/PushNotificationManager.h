@@ -10,6 +10,8 @@
 
 static NSString * const PushNotificationManagerDidReceiveNotification = @"PushNotificationManagerDidReceiveNotification";
 
+static NSString * const PushNotificationManagerDidReceiveDeviceToken = @"PushNotificationManagerDidReceiveDeviceToken";
+
 @interface PushNotificationManager : NSObject
 
 + (instancetype)sharedManager;

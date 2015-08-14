@@ -78,7 +78,9 @@
                               stringByReplacingOccurrencesOfString: @" " withString: @""];
     
     NSLog(@"%@",strToken);
-
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PushNotificationManagerDidReceiveDeviceToken object:@{@"deviceToken":strToken}];
+    
 }
 
 + (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
