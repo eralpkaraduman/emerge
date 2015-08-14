@@ -6,5 +6,6 @@ target 'emerge' do
 pod 'SlackTextViewController'
 pod 'SocketRocket'
 pod 'PureLayout'
+pod 'LoremIpsum'
 
 end
