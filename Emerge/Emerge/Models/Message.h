@@ -14,10 +14,6 @@
 
 @interface Message : MTLModel <MTLJSONSerializing>
 
-// temp
-@property (nonatomic) NSString *username;
-@property (nonatomic) UIImage *attachment;
-
 @property (nonatomic) User *user;
 @property (nonatomic, strong) NSString *text;
 

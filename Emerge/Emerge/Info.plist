@@ -28,6 +28,12 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs location information for finding nearby chatters.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs location information for finding nearby chatters.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>This app needs location information for finding nearby chatters.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

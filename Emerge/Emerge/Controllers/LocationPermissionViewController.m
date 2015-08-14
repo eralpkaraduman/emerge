@@ -9,6 +9,7 @@
 #import "LocationPermissionViewController.h"
 #import "UsernameViewController.h"
 #import "User.h"
+#import "CurrentUser.h"
 
 #import <PureLayout/PureLayout.h>
 #import <HIPLocationManager/HIPLocationManager.h>
@@ -29,21 +30,17 @@
     [label autoPinToTopLayoutGuideOfViewController:self withInset:100];
     [label autoAlignAxisToSuperviewAxis:ALAxisVertical];
 
+    [HIPLocationManager sharedManager].authorizationType = HIPLocationManagerAuthorizationTypeWhenInUse;
 
-//    [[HIPLocationManager sharedManager] getLocationWithExecutionBlock:^(CLLocation *location,  //
-//                                                                        NSError *error) {
-//
-//        User *user = [User currentUser];
-//        user.location = location;
-//
-//        UsernameViewController *controller = [UsernameViewController new];
-//        [self.navigationController pushViewController:controller animated:YES];
-//
-//    }];
-    
-    UsernameViewController *controller = [UsernameViewController new];
-    [self.navigationController pushViewController:controller animated:YES];
+    [[HIPLocationManager sharedManager] getLocationWithExecutionBlock:^(CLLocation *location,  //
+                                                                        NSError *error) {
 
+        CurrentUser *user = [CurrentUser currentUser];
+        user.location = location;
+
+        UsernameViewController *controller = [UsernameViewController new];
+        [self.navigationController pushViewController:controller animated:YES];
+    }];
 }
 
 @end

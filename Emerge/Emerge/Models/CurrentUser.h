@@ -15,6 +15,7 @@
 
 @property (nonatomic) User *profile;
 @property (nonatomic) CLLocation *location;
+@property (nonatomic) NSString *devicePushToken;
 
 + (instancetype)currentUser;
 

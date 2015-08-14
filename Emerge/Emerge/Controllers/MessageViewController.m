@@ -12,6 +12,7 @@
 #import "TypingIndicatorView.h"
 #import "Message.h"
 #import "CurrentUser.h"
+#import "User.h"
 
 #import <LoremIpsum/LoremIpsum.h>
 
@@ -78,30 +79,9 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     [super viewDidLoad];
     
     [WebSocketManager sharedManager].delegate = self;
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    
-//    for (int i = 0; i < 100; i++) {
-//        NSInteger words = (arc4random() % 40)+1;
-//        
-//        Message *message = [Message new];
-//        message.username = [LoremIpsum name];
-//        message.text = [LoremIpsum wordsWithNumber:words];
-//        [array addObject:message];
-//    }
-//    
-//    NSArray *reversed = [[array reverseObjectEnumerator] allObjects];
     
     self.messages = [NSMutableArray array];
     
-//    UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_editing"] style:UIBarButtonItemStylePlain target:self action:@selector(editRandomMessage:)];
-//    
-//    UIBarButtonItem *typeItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_typing"] style:UIBarButtonItemStylePlain target:self action:@selector(simulateUserTyping:)];
-//    UIBarButtonItem *appendItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icn_append"] style:UIBarButtonItemStylePlain target:self action:@selector(fillWithText:)];
-    
-//    self.navigationItem.rightBarButtonItems = @[editItem, appendItem, typeItem];
-    
-//    self.users = @[@"Allen", @"Anna", @"Alicia", @"Arnold", @"Armando", @"Antonio", @"Brad", @"Catalaya", @"Christoph", @"Emerson", @"Eric", @"Everyone", @"Steve"];
-//    self.channels = @[@"General", @"Random", @"iOS", @"Bugs", @"Sports", @"Android", @"UI", @"SSB"];
     self.emojis = @[@"m", @"man", @"machine", @"block-a", @"block-b", @"bowtie", @"boar", @"boat", @"book", @"bookmark", @"neckbeard", @"metal", @"fu", @"feelsgood"];
 
     self.bounces = YES;
@@ -284,30 +264,30 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     // Notifies the view controller when the user has pasted a media (image, video, etc) inside of the text view.
     
-    SLKPastableMediaType mediaType = [userInfo[SLKTextViewPastedItemMediaType] integerValue];
-    NSString *contentType = userInfo[SLKTextViewPastedItemContentType];
-    NSData *contentData = userInfo[SLKTextViewPastedItemData];
-    
-    NSLog(@"%s : %@",__FUNCTION__, contentType);
-    
-    if ((mediaType & SLKPastableMediaTypePNG) || (mediaType & SLKPastableMediaTypeJPEG)) {
-        
-        Message *message = [Message new];
-        message.username = [LoremIpsum name];
-        message.text = @"Attachment";
-        message.attachment = [UIImage imageWithData:contentData scale:[UIScreen mainScreen].scale];
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        UITableViewRowAnimation rowAnimation = self.inverted ? UITableViewRowAnimationBottom : UITableViewRowAnimationTop;
-        UITableViewScrollPosition scrollPosition = self.inverted ? UITableViewScrollPositionBottom : UITableViewScrollPositionTop;
-        
-        [self.tableView beginUpdates];
-        [self.messages insertObject:message atIndex:0];
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:rowAnimation];
-        [self.tableView endUpdates];
-        
-        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:YES];
-    }
+//    SLKPastableMediaType mediaType = [userInfo[SLKTextViewPastedItemMediaType] integerValue];
+//    NSString *contentType = userInfo[SLKTextViewPastedItemContentType];
+//    NSData *contentData = userInfo[SLKTextViewPastedItemData];
+//    
+//    NSLog(@"%s : %@",__FUNCTION__, contentType);
+//    
+//    if ((mediaType & SLKPastableMediaTypePNG) || (mediaType & SLKPastableMediaTypeJPEG)) {
+//        
+//        Message *message = [Message new];
+//        message.username = [LoremIpsum name];
+//        message.text = @"Attachment";
+//        message.attachment = [UIImage imageWithData:contentData scale:[UIScreen mainScreen].scale];
+//        
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//        UITableViewRowAnimation rowAnimation = self.inverted ? UITableViewRowAnimationBottom : UITableViewRowAnimationTop;
+//        UITableViewScrollPosition scrollPosition = self.inverted ? UITableViewScrollPositionBottom : UITableViewScrollPositionTop;
+//        
+//        [self.tableView beginUpdates];
+//        [self.messages insertObject:message atIndex:0];
+//        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:rowAnimation];
+//        [self.tableView endUpdates];
+//        
+//        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:YES];
+//    }
 }
 
 - (void)willRequestUndo
@@ -321,15 +301,15 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
 {
     // Notifies the view controller when tapped on the right "Accept" button for commiting the edited text
     
-    Message *message = [Message new];
-    message.username = [LoremIpsum name];
-    message.text = [self.textView.text copy];
-    
-    [self.messages removeObjectAtIndex:0];
-    [self.messages insertObject:message atIndex:0];
-    [self.tableView reloadData];
-    
-    [super didCommitTextEditing:sender];
+//    Message *message = [Message new];
+//    message.username = [LoremIpsum name];
+//    message.text = [self.textView.text copy];
+//    
+//    [self.messages removeObjectAtIndex:0];
+//    [self.messages insertObject:message atIndex:0];
+//    [self.tableView reloadData];
+//    
+//    [super didCommitTextEditing:sender];
 }
 
 - (void)didCancelTextEditing:(id)sender
@@ -430,14 +410,14 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
     
     Message *message = self.messages[indexPath.row];
     
-    cell.titleLabel.text = message.username;
+    cell.titleLabel.text = message.user.username;
     cell.bodyLabel.text = message.text;
     
-    if (message.attachment) {
-        cell.attachmentView.image = message.attachment;
-        cell.attachmentView.layer.shouldRasterize = YES;
-        cell.attachmentView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    }
+//    if (message.attachment) {
+//        cell.attachmentView.image = message.attachment;
+//        cell.attachmentView.layer.shouldRasterize = YES;
+//        cell.attachmentView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+//    }
     
     cell.indexPath = indexPath;
     cell.usedForMessage = YES;
@@ -499,7 +479,7 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
         CGFloat width = CGRectGetWidth(tableView.frame)-kMessageTableViewCellAvatarHeight;
         width -= 25.0;
         
-        CGRect titleBounds = [message.username boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
+        CGRect titleBounds = [message.user.username boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
         CGRect bodyBounds = [message.text boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
         
         if (message.text.length == 0) {
@@ -509,9 +489,9 @@ static NSString *AutoCompletionCellIdentifier = @"AutoCompletionCell";
         CGFloat height = CGRectGetHeight(titleBounds);
         height += CGRectGetHeight(bodyBounds);
         height += 40.0;
-        if (message.attachment) {
-            height += 80.0 + 10.0;
-        }
+//        if (message.attachment) {
+//            height += 80.0 + 10.0;
+//        }
         
         if (height < kMessageTableViewCellMinimumHeight) {
             height = kMessageTableViewCellMinimumHeight;

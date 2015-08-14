@@ -38,7 +38,6 @@
 + (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [PushNotificationManager sharedManager].application = application;
-    
 }
 
 - (void)registerForNotifications {
@@ -80,6 +79,7 @@
     NSLog(@"%@",strToken);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:PushNotificationManagerDidReceiveDeviceToken object:@{@"deviceToken":strToken}];
+    
     
 }
 

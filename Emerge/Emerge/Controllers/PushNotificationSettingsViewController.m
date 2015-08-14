@@ -10,6 +10,7 @@
 #import <ALView+PureLayout.h>
 #import "PushNotificationManager.h"
 #import "LocationPermissionViewController.h"
+#import "CurrentUser.h"
 
 @interface PushNotificationSettingsViewController ()
 
@@ -38,6 +39,8 @@
     
     NSString *deviceToken = [notification.object valueForKey:@"deviceToken"];
     NSLog(@"deviceToken %@",deviceToken);
+    
+    [CurrentUser currentUser].devicePushToken = deviceToken;
     
     LocationPermissionViewController *locationPermissionVC = [LocationPermissionViewController new];
     [self.navigationController pushViewController:locationPermissionVC animated:YES];

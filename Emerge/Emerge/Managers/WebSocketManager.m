@@ -69,7 +69,8 @@ static NSString *const kHostURLString = @"http://52.5.104.99/msg";
     message.user = [CurrentUser currentUser].profile;
 
     NSDictionary *dict = [MTLJSONAdapter JSONDictionaryFromModel:message error:nil];
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    NSDictionary *finalDict = @{@"message" : dict};
+    NSData *data = [NSJSONSerialization dataWithJSONObject:finalDict options:0 error:nil];
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     [self.socket send:string];
@@ -80,10 +81,12 @@ static NSString *const kHostURLString = @"http://52.5.104.99/msg";
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
     NSLog(@"message: %@", message);
-    
+
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    Message *messageObject = [MTLJSONAdapter modelOfClass:[Message class] fromJSONDictionary:dict error:nil];
+    NSDictionary *messageDict = [dict objectForKey:@"message"];
+    Message *messageObject =
+        [MTLJSONAdapter modelOfClass:[Message class] fromJSONDictionary:messageDict error:nil];
 
     if (self.delegate &&
         [self.delegate respondsToSelector:@selector(webSocketManager:didReceiveMessage:)]) {
@@ -94,11 +97,33 @@ static NSString *const kHostURLString = @"http://52.5.104.99/msg";
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket
 {
     NSLog(@"socket did open");
+
+    NSMutableDictionary *setupDict = [NSMutableDictionary dictionary];
+    if ([CurrentUser currentUser].location) {
+
+        CLLocation *location = [CurrentUser currentUser].location;
+
+        [setupDict setObject:@{
+            @"lat" : @(location.coordinate.latitude).stringValue,
+            @"lng" : @(location.coordinate.longitude).stringValue
+        } forKey:@"_coordinates"];
+    }
+    
+    if ([CurrentUser currentUser].devicePushToken) {
+        [setupDict setObject:[CurrentUser currentUser].devicePushToken forKey:@"token"];
+    }
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:setupDict options:0 error:nil];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [self.socket send:string];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error
 {
     NSLog(@"socket did fail with error");
+
+    [self _reconnect];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket
